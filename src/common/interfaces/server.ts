@@ -1,5 +1,5 @@
 export interface Server {
-  setMiddleware(): void;
+  setMiddleware(): Server;
   listen(port: number):  void;
-  setRutes(): void;
+  setRutes(): Server;
 }

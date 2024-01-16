@@ -1,4 +1,5 @@
+import { TypeServer } from "../enum/TypeServer";
 import { Server } from "./server";
 export interface ServerFactory {
-  createServer<Server>(): Server;
+  createServer(name: TypeServer): Server;
 }
