@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc && npm run copy-ui",
-    "copy-ui": "copyfiles -u 1 src/ui/**/* dist",
+    "copy-ui": "copyfiles -u 1 src/ui/** dist",
     "start": "ts-node dist/main",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
