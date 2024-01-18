@@ -6,7 +6,7 @@ export class Game {
   constructor(
     private comida: Food,
     private culebrita: Snake,
-    private lienzo: any
+    private lienzo: HTMLCanvasElement | null
   ) {}
 
   PosicionarComida = () => {
@@ -14,15 +14,15 @@ export class Game {
     this.comida.setPostionY(Math.floor(Math.random() * 10));
   };
   clean(){
-    const ctx = this.lienzo.getContext("2d");
-    ctx.clearRect(0,0,500,500)
+    const ctx = this.lienzo?.getContext("2d");
+    ctx?.clearRect(0,0,500,500)
     return this
   }
 
   draw(drawing: Drawable) {
-    const ctx = this.lienzo.getContext("2d");
-    ctx.strokeRect(0, 0, 500, 500);
-    ctx.fillRect(
+    const ctx = this.lienzo?.getContext("2d");
+    ctx?.strokeRect(0, 0, 500, 500);
+    ctx?.fillRect(
       drawing.getPostionX() * 50,
       drawing.getPostionY() * 50,
       50,
