@@ -1,5 +1,10 @@
-export class Food {
+import { Drawable } from "../interfaces/drawable";
+
+export class Food implements Drawable {
   constructor(private positionOnX: number, private positionOnY: number) {}
+  getLength(): number {
+    throw new Error("Method not implemented.");
+  }
   public setPostionX(value: number): void {
     this.positionOnX = value;
   }
