@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "module": "UMD",
+    "module": "CommonJS",
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es2015", // Cambiado a minúsculas según la convención
+    "target": "es2016", // Cambiado a minúsculas según la convención
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
@@ -20,5 +20,5 @@
     "jsx": "react"
   },
   "include": ["src/**/*.ts", "src/ui/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules" , "src/ui/src/*"]
 }

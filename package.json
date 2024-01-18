@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc && npm run copy-ui",
-    "copy-ui": "copyfiles -u 1 src/ui/** dist",
+    "clean": "rm -rf node_modules dist",
+    "build": "npm run clean && npm i && tsc && copyfiles -u 1 src/ui/index.html dist && npx webpack --config webpack.config.js",
+    "copy-ui": "copyfiles -u 1 src/ui/index.html dist",
     "start": "ts-node dist/main",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,6 +20,7 @@
   "devDependencies": {
     "copyfiles": "^2.4.1",
     "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
   }
