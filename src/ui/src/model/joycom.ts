@@ -25,8 +25,6 @@ export class JoyCom {
     console.log(`${this.estaMonda} ${this.moveLeft.name}`);
     console.log("Probando si lee el canvas");
     console.log(document.querySelector('#lienzo'));
-    
-    
   }
   private moveDown() {
     console.log(`${this.estaMonda} ${this.moveDown.name}`);
