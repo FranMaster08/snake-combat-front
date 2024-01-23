@@ -2,19 +2,20 @@ import { Drawable } from "../interfaces/drawable";
 import { PrincipalPlayer } from "../interfaces/principalPlayer";
 import { Game } from "./game";
 
-
 export class Joycom {
+    // public lastMovement : string;
     private ticksX: number = 0
     private ticksY: number = 0
     constructor(
         document: any,
         private principalPlayer: PrincipalPlayer & Drawable,
-        private game: Game
-
+        private game: Game,
+        public lastMovement?: string
     ) {
         document.addEventListener('keydown', (e: any) => {
             e.preventDefault()
             this.movement(e)
+            this.lastMovement = e.key
         })
     }
 

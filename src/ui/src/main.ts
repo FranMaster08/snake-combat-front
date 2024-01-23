@@ -13,9 +13,22 @@ class Main {
   ) {
     this.game.clean().draw(principalPlayer),
     this.joycom = new Joycom(document, this.principalPlayer, this.game);
+  
   }
 
   public play() {
+
+    let lastMovement = this.joycom.lastMovement
+
+    if (lastMovement === 'ArrowRight') {
+      this.joycom.right()
+    } else if (lastMovement === 'ArrowLeft') {
+      this.joycom.left()
+    } else if (lastMovement === 'ArrowUp') {
+      this.joycom.up()
+    } else if (lastMovement === 'ArrowDown') {
+      this.joycom.down()
+    }
 
     // this.ticks = this.ticks > 9 ? 0 : this.ticks;
     // this.principalPlayer.setPostionX(this.ticks);
