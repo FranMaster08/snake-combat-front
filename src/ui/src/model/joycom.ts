@@ -1,78 +1,40 @@
-import { Drawable } from "../interfaces/drawable";
-import { PrincipalPlayer } from "../interfaces/principalPlayer";
-import { Game } from "./game";
+import { Player } from "./player";
 
-export class Joycom {
-    // public lastMovement : string;
-    private ticksX: number = 0
-    private ticksY: number = 0
-    constructor(
-        document: any,
-        private principalPlayer: PrincipalPlayer & Drawable,
-        private game: Game,
-        public lastMovement?: string
-    ) {
-        document.addEventListener('keydown', (e: any) => {
-            e.preventDefault()
-            this.movement(e)
-            this.lastMovement = e.key
-        })
-    }
+export class JoyCom {
+  private player: Player;
+  private estaMonda: string = "Esta monda se mueve hacia";
+  private Buttons: Record<string, () => void> = {};
 
-    movement(e: any) {
+  constructor(documentContext: any) {
+    this.player = new Player();
+    this.Buttons["ArrowLeft"] = this.moveLeft.bind(this);
+    this.Buttons["ArrowRight"] = this.moveRight.bind(this);
+    this.Buttons["ArrowUp"] = this.moveUp.bind(this);
+    this.Buttons["ArrowDown"] = this.moveDown.bind(this);
 
-        switch (e.key) {
+    documentContext.addEventListener("keydown", this.movePlayer.bind(this));
+  }
 
-            case "ArrowRight":
-                console.log("Esta monda sirve")
-                this.right();
-                break;
+  private movePlayer(e: KeyboardEvent) {
+    const keyPress: string = e.key as string;
+    const ejecutar = this.Buttons[`${keyPress}`];
+    ejecutar();
+  }
 
-            case "ArrowDown":
-                console.log("Esta monda sirve 2.0")
-                this.down();
-                break;
-
-            case "ArrowUp":
-                console.log("Esta monda sirve 3.0")
-                this.up();
-                break;
-
-            case "ArrowLeft":
-                console.log("Esta monda sirve 4.0")
-                this.left();
-                break;
-
-            default:
-
-                break;
-        }
-    }
-
-    right() {
-        this.ticksX = this.ticksX > 9 ? 0 : this.ticksX;
-        this.principalPlayer.setPostionX(this.ticksX);
-        this.principalPlayer.setPostionY(this.ticksY)
-        this.game.clean().draw(this.principalPlayer);
-        this.ticksX++;
-    }
-    left() {
-        this.ticksX = this.ticksX < 0 ? 9 : this.ticksX;
-        this.principalPlayer.setPostionX(this.ticksX);
-        this.game.clean().draw(this.principalPlayer);
-        this.ticksX--;
-    }
-    up() {
-        this.ticksY = this.ticksY < 0 ? 9 : this.ticksY;
-        this.principalPlayer.setPostionY(this.ticksY);
-        this.game.clean().draw(this.principalPlayer);
-        this.ticksY--;
-    }
-    down() {
-        this.ticksY = this.ticksY > 9 ? 0 : this.ticksY;
-        this.principalPlayer.setPostionY(this.ticksY);
-        this.game.clean().draw(this.principalPlayer);
-        this.ticksY++;
-    }
-
+  private moveLeft() {
+    console.log(`${this.estaMonda} ${this.moveLeft.name}`);
+    console.log("Probando si lee el canvas");
+    console.log(document.querySelector('#lienzo'));
+    
+    
+  }
+  private moveDown() {
+    console.log(`${this.estaMonda} ${this.moveDown.name}`);
+  }
+  private moveUp() {
+    console.log(`${this.estaMonda} ${this.moveUp.name}`);
+  }
+  private moveRight() {
+    console.log(`${this.estaMonda} ${this.moveRight.name}`);
+  }
 }
