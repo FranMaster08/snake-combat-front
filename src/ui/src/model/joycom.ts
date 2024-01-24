@@ -6,7 +6,7 @@ export class JoyCom {
   private Buttons: Record<string, () => void> = {};
 
   constructor(documentContext: any) {
-    this.player = new Player();
+    this.player = new Player(0,0);
     this.Buttons["ArrowLeft"] = this.moveLeft.bind(this);
     this.Buttons["ArrowRight"] = this.moveRight.bind(this);
     this.Buttons["ArrowUp"] = this.moveUp.bind(this);
