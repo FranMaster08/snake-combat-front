@@ -1,7 +1,7 @@
 export class Player {
   constructor(
-    private positionOnX: number,
-    private positionOnY: number
+    private positionOnX: number = 0,
+    private positionOnY: number = 0
   ) {
 
   }
@@ -19,6 +19,12 @@ export class Player {
     return this
   }
 
+  public clean(lienzo: HTMLCanvasElement | null){
+    const ctx = lienzo?.getContext("2d");
+    ctx?.clearRect(0,0,500,500)
+    return this
+  }
+
   public setPostionX(value: number): void {
     this.positionOnX = value;
   }
@@ -27,7 +33,7 @@ export class Player {
   }
 
   public getPostionX(): number {
-    console.log(this.positionOnX);
+    // console.log(this.positionOnX);
     return this.positionOnX;
   }
   public getPostionY(): number {

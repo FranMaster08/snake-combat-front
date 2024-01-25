@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clean": "rm -rf dist",
-    "build": "npm run clean && tsc && copyfiles -u 1 src/ui/index.html dist && npx webpack --config webpack.config.js",
+    "clean": "rm -rf node_modules dist",
+    "build": "npm run clean && npm i && tsc && copyfiles -u 1 src/ui/index.html dist && npx webpack --config webpack.config.js",
     "copy-ui": "copyfiles -u 1 src/ui/index.html dist",
     "start": "ts-node dist/main",
     "test": "echo \"Error: no test specified\" && exit 1"

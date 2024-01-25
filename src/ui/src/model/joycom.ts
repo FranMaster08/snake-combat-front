@@ -4,9 +4,14 @@ export class JoyCom {
   private player: Player;
   private estaMonda: string = "Esta monda se mueve hacia";
   private Buttons: Record<string, () => void> = {};
-
-  constructor(documentContext: any) {
-    this.player = new Player(0,0);
+  private ticksX : number = 0;
+  private ticksY : number = 0;
+  public lastMovement: string = "ArrowRight";
+  public lienzo: HTMLCanvasElement | null;
+  
+  constructor(documentContext: any, lienzo : HTMLCanvasElement | null) {
+    this.lienzo = lienzo;
+    this.player = new Player(0, 0);
     this.Buttons["ArrowLeft"] = this.moveLeft.bind(this);
     this.Buttons["ArrowRight"] = this.moveRight.bind(this);
     this.Buttons["ArrowUp"] = this.moveUp.bind(this);
@@ -17,22 +22,37 @@ export class JoyCom {
 
   private movePlayer(e: KeyboardEvent) {
     const keyPress: string = e.key as string;
+    this.lastMovement = keyPress;
     const ejecutar = this.Buttons[`${keyPress}`];
     ejecutar();
   }
 
-  private moveLeft() {
+  public moveLeft() {
     console.log(`${this.estaMonda} ${this.moveLeft.name}`);
-    console.log("Probando si lee el canvas");
-    console.log(document.querySelector('#lienzo'));
+    this.ticksX = this.ticksX < 0 ? 9 : this.ticksX;
+    this.ticksX--;
+    this.player.setPostionX(this.ticksX);
+    this.player.clean(this.lienzo).draw(this.lienzo);
   }
-  private moveDown() {
+  public moveDown() {
     console.log(`${this.estaMonda} ${this.moveDown.name}`);
+    this.ticksY = this.ticksY > 9 ? 0 : this.ticksY;
+    this.ticksY++;
+    this.player.setPostionY(this.ticksY);
+    this.player.clean(this.lienzo).draw(this.lienzo);
   }
-  private moveUp() {
+  public moveUp() {
     console.log(`${this.estaMonda} ${this.moveUp.name}`);
+    this.ticksY = this.ticksY < 0 ? 9 : this.ticksY;
+    this.ticksY--;
+    this.player.setPostionY(this.ticksY);
+    this.player.clean(this.lienzo).draw(this.lienzo);
   }
-  private moveRight() {
+  public moveRight() {
     console.log(`${this.estaMonda} ${this.moveRight.name}`);
+    this.ticksX = this.ticksX > 9 ? 0 : this.ticksX;
+    this.ticksX++;
+    this.player.setPostionX(this.ticksX);
+    this.player.clean(this.lienzo).draw(this.lienzo);
   }
 }
